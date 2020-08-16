@@ -1,4 +1,4 @@
-<h1 style="text-align: center">可期教学管理系统</h1>
+<h1 style="text-align: center">可期教学管理系统 - 后端</h1>
 <div style="text-align: center">
 
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/Charles7c/k7tm-backend/master/LICENSE)
@@ -9,17 +9,17 @@
 </div>
 
 #### 项目简介
-一个基于 Spring Boot 2.1.0 、 Spring Boot Jpa、 JWT、Spring Security、Redis、Vue的前后端分离的教学管理后台系统
+一个基于 Spring Boot 2.1.0 、 Spring Boot Jpa&MyBatis Plus、 JWT、Spring Security、Redis、Vue的前后端分离的教学管理后台系统
 
 **开发文档：**  暂无
 
 **体验地址：**  暂无
 
-**账号密码：** `admin / 123456`
+**账号密码：** 暂无
 
 #### 项目源码
 
-|     |   后端源码  |   前端源码  |
+|  开源平台  |   后端源码  |   前端源码  |
 |---  |--- | --- |
 |  github   |  https://github.com/Charles7c/k7tm-backend   |  https://github.com/Charles7c/k7tm-pc   |
 
@@ -56,6 +56,8 @@
 #### 项目结构
 项目采用按功能分模块的开发方式，结构如下
 - `k7tm-biz` 教学管理系统的核心业务模块
+
+- `k7tm-admin` 系统启动入口，解决循环依赖
 
 - `eladmin-common` 为系统的公共模块，各种工具类，公共配置存在该模块
 
@@ -115,6 +117,16 @@
 
 - 感谢 [Elunez](https://github.com/elunez/eladmin) 的后台管理系统框架：EL-ADMIN
 
+#### 代码及Git提交规范
+
+- 后端代码编写建议参考[《阿里巴巴Java开发手册（嵩山版）》](https://github.com/alibaba/p3c/blob/master/Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%EF%BC%88%E5%B5%A9%E5%B1%B1%E7%89%88%EF%BC%89.pdf)
+    - 配合Intellij IDEA的Alibaba Java Code Guidelines插件使用，体验更佳
+    - 插件具体使用方法可参考：[《阿里巴巴Java开发手册插件》](https://blog.csdn.net/wjn19921104/article/details/80171913)
+- Git提交模板建议参考[AngularJS仓库](https://github.com/angular/angular.js)的提交规范
+    - 配合Intellij IDEA或WebStorm的Git Commit Template插件使用，体验更佳
+    - 插件具体使用方法可参考：[《Git Commit Template》](https://www.cnblogs.com/Dyaqi/p/13231260.html)
+    - emoji表情可参考[gitmoji](https://gitmoji.carloscuesta.me/)官网及其GitHub仓库示例
 
 #### 反馈交流
+
 - QQ交流群：1045079806
