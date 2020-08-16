@@ -43,8 +43,8 @@ import springfox.documentation.annotations.ApiIgnore;
 @SpringBootApplication
 // 扫描不同包必须添加下方三个注解
 @ComponentScan(basePackages={"me.zhengjie", "tech.muyoung.k7tm"})
-@EnableJpaRepositories(basePackages={"me.zhengjie"})
-@EntityScan(basePackages={"me.zhengjie"})
+@EnableJpaRepositories(basePackages={"me.zhengjie", "tech.muyoung.k7tm"})
+@EntityScan(basePackages={"me.zhengjie", "tech.muyoung.k7tm"})
 @EnableTransactionManagement
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class AppRun {
