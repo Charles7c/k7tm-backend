@@ -1,5 +1,5 @@
 /*
- *  Copyright 2019-2020 Zheng Jie
+ *  Copyright 2020 Charles7c
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -13,28 +13,36 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package me.zhengjie.modules.system.service.dto;
+
+package tech.muyoung.k7tm.base.service.dto;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import me.zhengjie.annotation.Query;
+import me.zhengjie.base.BaseDTO;
+
 import java.sql.Timestamp;
-import java.util.List;
+import java.io.Serializable;
 
 /**
-* @author Zheng Jie
-* @date 2019-6-4 14:49:34
-*/
+ *
+ * @author Charles7c
+ * @date 2020-08-17
+ **/
 @Data
-@NoArgsConstructor
-public class JobQueryCriteria {
+public class CourseDto extends BaseDTO implements Serializable {
 
-    @Query(type = Query.Type.INNER_LIKE)
+    /** ID */
+    private Long courseId;
+
+    /** 名称 */
     private String name;
 
-    @Query
+    /** 排序 */
+    private Integer sort;
+
+    /** 描述 */
+    private String courseDesc;
+
+    /** 课程状态 */
     private Integer enabled;
 
-    @Query(type = Query.Type.BETWEEN)
-    private List<Timestamp> createTime;
 }

@@ -13,11 +13,11 @@ import java.sql.Timestamp;
  */
 @Getter
 @Setter
-public class BaseDTO  implements Serializable {
+public class BaseDTO implements Serializable {
 
     private String createBy;
 
-    private String updatedBy;
+    private String updateBy;
 
     private Timestamp createTime;
 
