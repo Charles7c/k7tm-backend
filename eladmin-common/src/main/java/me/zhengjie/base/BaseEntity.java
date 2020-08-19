@@ -44,12 +44,12 @@ public class BaseEntity implements Serializable {
 
     @CreatedBy
     @Column(name = "create_by", updatable = false)
-    @ApiModelProperty(value = "创建人", hidden = true)
+    @ApiModelProperty(value = "创建者", hidden = true)
     private String createBy;
 
     @LastModifiedBy
     @Column(name = "update_by")
-    @ApiModelProperty(value = "更新人", hidden = true)
+    @ApiModelProperty(value = "更新者", hidden = true)
     private String updateBy;
 
     @CreationTimestamp
