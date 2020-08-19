@@ -20,6 +20,8 @@ import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
+import me.zhengjie.base.BaseEntity;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
@@ -33,7 +35,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name="k7tm_classs_classs")
-public class Classs implements Serializable {
+public class Classs extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,22 +104,6 @@ public class Classs implements Serializable {
     @Column(name = "desc")
     @ApiModelProperty(value = "班级描述")
     private String desc;
-
-    @Column(name = "create_by")
-    @ApiModelProperty(value = "创建者")
-    private String createBy;
-
-    @Column(name = "update_by")
-    @ApiModelProperty(value = "更新者")
-    private String updateBy;
-
-    @Column(name = "create_time")
-    @ApiModelProperty(value = "创建日期")
-    private Timestamp createTime;
-
-    @Column(name = "update_time")
-    @ApiModelProperty(value = "更新时间")
-    private Timestamp updateTime;
 
     public void copy(Classs source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));

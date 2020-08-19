@@ -17,6 +17,8 @@
 package tech.muyoung.k7tm.classs.service.dto;
 
 import lombok.Data;
+import me.zhengjie.base.BaseDTO;
+
 import java.sql.Timestamp;
 import java.io.Serializable;
 
@@ -26,7 +28,7 @@ import java.io.Serializable;
  * @date 2020-08-16
  **/
 @Data
-public class ClasssDto implements Serializable {
+public class ClasssDto extends BaseDTO implements Serializable {
 
     /** ID */
     private Long classId;
@@ -75,16 +77,4 @@ public class ClasssDto implements Serializable {
 
     /** 班级描述 */
     private String desc;
-
-    /** 创建者 */
-    private String createBy;
-
-    /** 更新者 */
-    private String updateBy;
-
-    /** 创建日期 */
-    private Timestamp createTime;
-
-    /** 更新时间 */
-    private Timestamp updateTime;
 }

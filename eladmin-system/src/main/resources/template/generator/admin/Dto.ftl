@@ -17,6 +17,7 @@
 package ${package}.service.dto;
 
 import lombok.Data;
+import me.zhengjie.base.BaseDTO;
 <#if hasTimestamp>
 import java.sql.Timestamp;
 </#if>
@@ -35,7 +36,7 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
  * @date ${date}
  **/
 @Data
-public class ${className}Dto implements Serializable {
+public class ${className}Dto extends BaseDTO implements Serializable {
 <#if columns??>
     <#list columns as column>
 

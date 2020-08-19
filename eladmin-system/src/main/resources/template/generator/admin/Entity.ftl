@@ -20,6 +20,7 @@ import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
+import me.zhengjie.base.BaseEntity;
 import javax.persistence.*;
 <#if isNotNullColumns??>
 import javax.validation.constraints.*;
@@ -45,7 +46,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name="${tableName}")
-public class ${className} implements Serializable {
+public class ${className} extends BaseEntity implements Serializable {
 <#if columns??>
     <#list columns as column>
 
