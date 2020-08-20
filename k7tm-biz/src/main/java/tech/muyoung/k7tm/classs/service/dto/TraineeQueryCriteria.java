@@ -28,6 +28,14 @@ import me.zhengjie.annotation.Query;
 @Data
 public class TraineeQueryCriteria {
 
+    /** 精确 */
+    @Query
+    private Long schoolId;
+
+    /** 精确 */
+    @Query
+    private Long classId;
+
     /** 模糊 */
     @Query(type = Query.Type.INNER_LIKE)
     private String name;
@@ -50,35 +58,31 @@ public class TraineeQueryCriteria {
 
     /** 精确 */
     @Query
-    private Long provinceId;
-
-    /** 精确 */
-    @Query
-    private Long cityId;
-
-    /** 精确 */
-    @Query
-    private Integer source;
-
-    /** 精确 */
-    @Query
     private Long courseId;
 
     /** 精确 */
     @Query
-    private Long schoolId;
-
-    /** 精确 */
-    @Query
-    private Long classId;
-
-    /** 精确 */
-    @Query
-    private Integer status;
+    private Integer learningStatus;
 
     /** 精确 */
     @Query
     private Integer education;
+    /** 精确 */
+    @Query
+    private Integer source;
+
+    @Query(type = Query.Type.INNER_LIKE)
+    private String advisoryTeacher;
+
+    @Query
+    private Integer needEmployment;
+
+    @Query
+    private Integer needEdu;
+
+    /** BETWEEN */
+    @Query(type = Query.Type.BETWEEN)
+    private List<Timestamp> registrationTime;
     /** BETWEEN */
     @Query(type = Query.Type.BETWEEN)
     private List<Timestamp> createTime;

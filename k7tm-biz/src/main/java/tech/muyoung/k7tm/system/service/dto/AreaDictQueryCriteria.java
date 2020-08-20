@@ -31,8 +31,8 @@ public class AreaDictQueryCriteria{
     @Query(type = Query.Type.INNER_LIKE)
     private String name;
 
-    /** 模糊 */
-    @Query(type = Query.Type.INNER_LIKE)
+    /** 精确 */
+    @Query
     private Long parentId;
 
     /** 模糊 */
