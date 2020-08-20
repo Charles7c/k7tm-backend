@@ -10,7 +10,7 @@
           <#list queryColumns as column>
             <#if column.queryType != 'BetWeen'>
         <label class="el-form-item-label"><#if column.remark != ''>${column.remark}<#else>${column.changeColumnName}</#if></label>
-        <el-input v-model="query.${column.changeColumnName}" clearable placeholder="<#if column.remark != ''>${column.remark}<#else>${column.changeColumnName}</#if>" style="width: 185px;" class="filter-item" @keyup.enter.native="crud.toQuery" />
+        <el-input v-model="query.${column.changeColumnName}" clearable placeholder="<#if column.remark != ''>${column.remark}<#else>${column.changeColumnName}</#if>" style="width: 134px;" class="filter-item" @keyup.enter.native="crud.toQuery" />
             </#if>
           </#list>
         </#if>
@@ -78,7 +78,7 @@
       </el-dialog>
       <!--表格渲染-->
       <el-table ref="table" v-loading="crud.loading" :data="crud.data" size="small" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
-        <el-table-column type="selection" width="55" />
+        <el-table-column type="selection" width="55" align="center"/>
         <#if columns??>
             <#list columns as column>
             <#if column.columnShow>
