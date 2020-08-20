@@ -118,7 +118,7 @@ public class TraineeServiceImpl implements TraineeService {
             map.put("所在校区(部门)", trainee.getSchoolId());
             map.put("所在班级", trainee.getClassId());
             map.put("进班时间", trainee.getEnterClassTime());
-            map.put("学习状态", trainee.getStatus());
+            map.put("学习状态", trainee.getLearningStatus());
             map.put("剩余课时(一对一)", trainee.getClassHour());
             map.put("最高学历", trainee.getEducation());
             map.put("毕业院校", trainee.getGraduateInstitutions());

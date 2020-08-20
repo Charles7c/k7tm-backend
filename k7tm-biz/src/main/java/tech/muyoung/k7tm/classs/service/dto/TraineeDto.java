@@ -109,7 +109,7 @@ public class TraineeDto extends BaseDTO implements Serializable {
     private Timestamp enterClassTime;
 
     /** 学习状态 */
-    private Integer status;
+    private Integer learningStatus;
 
     /** 剩余课时(一对一) */
     private Integer classHour;
@@ -130,7 +130,10 @@ public class TraineeDto extends BaseDTO implements Serializable {
     private Integer needEdu;
 
     /** 专业基础情况 */
-    private String basisStatus;
+    private Integer basisStatus;
+
+    /** 生活状态 */
+    private Integer status;
 
     /** 咨询老师 */
     private String advisoryTeacher;

@@ -127,10 +127,10 @@ public class Trainee extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "进班时间")
     private Timestamp enterClassTime;
 
-    @Column(name = "status",nullable = false)
+    @Column(name = "learning_status",nullable = false)
     @NotNull
     @ApiModelProperty(value = "学习状态")
-    private Integer status;
+    private Integer learningStatus;
 
     @ApiModelProperty(value = "剩余课时(一对一)")
     private Integer classHour;
@@ -153,7 +153,10 @@ public class Trainee extends BaseEntity implements Serializable {
     private Integer needEdu;
 
     @ApiModelProperty(value = "专业基础情况")
-    private String basisStatus;
+    private Integer basisStatus;
+
+    @ApiModelProperty(value = "生活状态")
+    private Integer status;
 
     @Column(name = "advisory_teacher",nullable = false)
     @NotBlank
