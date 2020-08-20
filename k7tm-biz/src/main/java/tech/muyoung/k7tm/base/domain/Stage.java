@@ -45,11 +45,9 @@ public class Stage extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "名称")
     private String name;
 
-    @Column(name = "ramark")
     @ApiModelProperty(value = "备注")
     private String ramark;
 
-    @Column(name = "sort")
     @ApiModelProperty(value = "排序")
     private Integer sort;
 

@@ -64,7 +64,7 @@ public class ClasssServiceImpl implements ClasssService {
     @Transactional
     public ClasssDto findById(Long classId) {
         Classs classs = classsRepository.findById(classId).orElseGet(Classs::new);
-        ValidationUtil.isNull(classs.getClassId(),"Classs","classId",classId);
+        ValidationUtil.isNull(classs.getId(),"Classs","classId",classId);
         return classsMapper.toDto(classs);
     }
 
@@ -77,8 +77,8 @@ public class ClasssServiceImpl implements ClasssService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void update(Classs resources) {
-        Classs classs = classsRepository.findById(resources.getClassId()).orElseGet(Classs::new);
-        ValidationUtil.isNull( classs.getClassId(),"Classs","id",resources.getClassId());
+        Classs classs = classsRepository.findById(resources.getId()).orElseGet(Classs::new);
+        ValidationUtil.isNull( classs.getId(),"Classs","id",resources.getId());
         classs.copy(resources);
         classsRepository.save(classs);
     }

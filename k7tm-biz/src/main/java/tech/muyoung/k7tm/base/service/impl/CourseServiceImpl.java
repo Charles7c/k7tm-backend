@@ -64,7 +64,7 @@ public class CourseServiceImpl implements CourseService {
     @Transactional
     public CourseDto findById(Long courseId) {
         Course course = courseRepository.findById(courseId).orElseGet(Course::new);
-        ValidationUtil.isNull(course.getCourseId(),"Course","courseId",courseId);
+        ValidationUtil.isNull(course.getId(),"Course","courseId",courseId);
         return courseMapper.toDto(course);
     }
 
@@ -77,8 +77,8 @@ public class CourseServiceImpl implements CourseService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void update(Course resources) {
-        Course course = courseRepository.findById(resources.getCourseId()).orElseGet(Course::new);
-        ValidationUtil.isNull( course.getCourseId(),"Course","id",resources.getCourseId());
+        Course course = courseRepository.findById(resources.getId()).orElseGet(Course::new);
+        ValidationUtil.isNull( course.getId(),"Course","id",resources.getId());
         course.copy(resources);
         courseRepository.save(course);
     }

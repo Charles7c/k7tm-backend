@@ -48,10 +48,10 @@ public interface ClasssService {
 
     /**
      * 根据ID查询
-     * @param classId ID
+     * @param id ID
      * @return ClasssDto
      */
-    ClasssDto findById(Long classId);
+    ClasssDto findById(Long id);
 
     /**
     * 创建

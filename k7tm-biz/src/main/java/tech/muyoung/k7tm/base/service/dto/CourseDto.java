@@ -31,7 +31,7 @@ import java.io.Serializable;
 public class CourseDto extends BaseDTO implements Serializable {
 
     /** ID */
-    private Long courseId;
+    private Long id;
 
     /** 名称 */
     private String name;

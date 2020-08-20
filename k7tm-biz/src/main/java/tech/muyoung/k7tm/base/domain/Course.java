@@ -40,7 +40,7 @@ public class Course extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "ID")
-    private Long courseId;
+    private Long id;
 
     @Column(name = "name",nullable = false)
     @NotBlank

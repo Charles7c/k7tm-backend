@@ -39,9 +39,8 @@ public class Classs extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "class_id")
     @ApiModelProperty(value = "ID")
-    private Long classId;
+    private Long id;
 
     @Column(name = "name",nullable = false)
     @NotBlank

@@ -48,10 +48,10 @@ public interface CourseService {
 
     /**
      * 根据ID查询
-     * @param courseId ID
+     * @param id ID
      * @return CourseDto
      */
-    CourseDto findById(Long courseId);
+    CourseDto findById(Long id);
 
     /**
     * 创建

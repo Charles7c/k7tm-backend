@@ -39,14 +39,14 @@ import javax.servlet.http.HttpServletResponse;
 @Api(tags = "阶段管理")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/Stage")
+@RequestMapping("/api/stage")
 public class StageController {
 
     private final StageService StageService;
 
     @Log("导出数据")
     @ApiOperation("导出数据")
-    @PreAuthorize("@el.check('Stage:list')")
+    @PreAuthorize("@el.check('stage:list')")
     @GetMapping(value = "/download")
     public void download(HttpServletResponse response, StageQueryCriteria criteria) throws IOException {
         StageService.download(StageService.queryAll(criteria), response);
@@ -54,7 +54,7 @@ public class StageController {
 
     @Log("查询阶段")
     @ApiOperation("查询阶段")
-    @PreAuthorize("@el.check('Stage:list')")
+    @PreAuthorize("@el.check('stage:list')")
     @GetMapping
     public ResponseEntity<Object> query(StageQueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(StageService.queryAll(criteria,pageable),HttpStatus.OK);
@@ -62,7 +62,7 @@ public class StageController {
 
     @Log("新增阶段")
     @ApiOperation("新增阶段")
-    @PreAuthorize("@el.check('Stage:add')")
+    @PreAuthorize("@el.check('stage:add')")
     @PostMapping
     public ResponseEntity<Object> create(@Validated @RequestBody Stage resources){
         return new ResponseEntity<>(StageService.create(resources),HttpStatus.CREATED);
@@ -70,7 +70,7 @@ public class StageController {
 
     @Log("修改阶段")
     @ApiOperation("修改阶段")
-    @PreAuthorize("@el.check('Stage:edit')")
+    @PreAuthorize("@el.check('stage:edit')")
     @PutMapping
     public ResponseEntity<Object> update(@Validated @RequestBody Stage resources){
         StageService.update(resources);
@@ -79,7 +79,7 @@ public class StageController {
 
     @Log("删除阶段")
     @ApiOperation("删除阶段")
-    @PreAuthorize("@el.check('Stage:del')")
+    @PreAuthorize("@el.check('stage:del')")
     @DeleteMapping
     public ResponseEntity<Object> delete(@RequestBody Long[] ids) {
         StageService.deleteAll(ids);
