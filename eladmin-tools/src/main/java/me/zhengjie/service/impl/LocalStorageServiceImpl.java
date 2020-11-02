@@ -71,7 +71,7 @@ public class LocalStorageServiceImpl implements LocalStorageService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void create(String name, MultipartFile multipartFile) {
+    public LocalStorage create(String name, MultipartFile multipartFile) {
         FileUtil.checkSize(properties.getMaxSize(), multipartFile.getSize());
         String suffix = FileUtil.getExtensionName(multipartFile.getOriginalFilename());
         String type = FileUtil.getFileType(suffix);
@@ -90,6 +90,7 @@ public class LocalStorageServiceImpl implements LocalStorageService {
                     FileUtil.getSize(multipartFile.getSize())
             );
             localStorageRepository.save(localStorage);
+            return localStorageRepository.save(localStorage);
         }catch (Exception e){
             FileUtil.del(file);
             throw e;

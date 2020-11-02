@@ -4,9 +4,9 @@ spring:
     druid:
       db-type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-      url: jdbc:log4jdbc:mysql://localhost:3306/k7tmdb_dev?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
-      username: root
-      password: root
+      url: jdbc:log4jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:k7tmdb_dev}?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+      username: ${DB_USER:root}
+      password: ${DB_PWD:root}
       # 初始连接数
       initial-size: 5
       # 最小连接数
@@ -45,10 +45,10 @@ spring:
             multi-statement-allow: true
   redis:
     #数据库索引
-    database: 0
-    host: 127.0.0.1
-    port: 6379
-    password: root
+    database: ${REDIS_DB:0}
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PWD:root}
     #连接超时时间
     timeout: 5000
 
@@ -57,7 +57,7 @@ login:
   # 登录缓存
   cache-enable: true
   #  是否限制单用户登录
-  single: false
+  single-login: false
   #  验证码
   login-code:
     #  验证码类型配置 查看 LoginProperties 类

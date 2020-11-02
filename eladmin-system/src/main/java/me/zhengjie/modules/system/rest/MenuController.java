@@ -35,6 +35,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Zheng Jie
@@ -51,7 +52,6 @@ public class MenuController {
     private final MenuMapper menuMapper;
     private static final String ENTITY_NAME = "menu";
 
-    @Log("导出菜单数据")
     @ApiOperation("导出菜单数据")
     @GetMapping(value = "/download")
     @PreAuthorize("@el.check('menu:list')")
@@ -74,7 +74,18 @@ public class MenuController {
         return new ResponseEntity<>(menuService.getMenus(pid),HttpStatus.OK);
     }
 
-    @Log("查询菜单")
+    @ApiOperation("根据菜单ID返回所有子节点ID，包含自身ID")
+    @GetMapping(value = "/child")
+    @PreAuthorize("@el.check('menu:list','roles:list')")
+    public ResponseEntity<Object> child(@RequestParam Long id){
+        Set<Menu> menuSet = new HashSet<>();
+        List<MenuDto> menuList = menuService.getMenus(id);
+        menuSet.add(menuService.findOne(id));
+        menuSet = menuService.getChildMenus(menuMapper.toEntity(menuList), menuSet);
+        Set<Long> ids = menuSet.stream().map(Menu::getId).collect(Collectors.toSet());
+        return new ResponseEntity<>(ids,HttpStatus.OK);
+    }
+
     @ApiOperation("查询菜单")
     @GetMapping
     @PreAuthorize("@el.check('menu:list')")
@@ -83,7 +94,6 @@ public class MenuController {
         return new ResponseEntity<>(PageUtil.toPage(menuDtoList, menuDtoList.size()),HttpStatus.OK);
     }
 
-    @Log("查询菜单")
     @ApiOperation("查询菜单:根据ID获取同级与上级数据")
     @PostMapping("/superior")
     @PreAuthorize("@el.check('menu:list')")
@@ -129,7 +139,7 @@ public class MenuController {
         for (Long id : ids) {
             List<MenuDto> menuList = menuService.getMenus(id);
             menuSet.add(menuService.findOne(id));
-            menuSet = menuService.getDeleteMenus(menuMapper.toEntity(menuList), menuSet);
+            menuSet = menuService.getChildMenus(menuMapper.toEntity(menuList), menuSet);
         }
         menuService.delete(menuSet);
         return new ResponseEntity<>(HttpStatus.OK);

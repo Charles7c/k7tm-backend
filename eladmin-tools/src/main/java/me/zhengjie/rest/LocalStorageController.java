@@ -18,8 +18,10 @@ package me.zhengjie.rest;
 import lombok.RequiredArgsConstructor;
 import me.zhengjie.annotation.Log;
 import me.zhengjie.domain.LocalStorage;
+import me.zhengjie.exception.BadRequestException;
 import me.zhengjie.service.LocalStorageService;
 import me.zhengjie.service.dto.LocalStorageQueryCriteria;
+import me.zhengjie.utils.FileUtil;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +53,6 @@ public class LocalStorageController {
         return new ResponseEntity<>(localStorageService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 
-    @Log("导出数据")
     @ApiOperation("导出数据")
     @GetMapping(value = "/download")
     @PreAuthorize("@el.check('storage:list')")
@@ -67,6 +68,18 @@ public class LocalStorageController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @PostMapping("/pictures")
+    @ApiOperation("上传图片")
+    public ResponseEntity<Object> upload(@RequestParam MultipartFile file){
+        // 判断文件是否为图片
+        String suffix = FileUtil.getExtensionName(file.getOriginalFilename());
+        if(!FileUtil.IMAGE.equals(FileUtil.getFileType(suffix))){
+            throw new BadRequestException("只能上传图片");
+        }
+        LocalStorage localStorage = localStorageService.create(null, file);
+        return new ResponseEntity<>(localStorage, HttpStatus.OK);
+    }
+
     @ApiOperation("修改文件")
     @PutMapping
     @PreAuthorize("@el.check('storage:edit')")
@@ -75,7 +88,7 @@ public class LocalStorageController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @Log("多选删除")
+    @Log("删除文件")
     @DeleteMapping
     @ApiOperation("多选删除")
     public ResponseEntity<Object> delete(@RequestBody Long[] ids) {

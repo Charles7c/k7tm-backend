@@ -137,8 +137,9 @@ export default {
     return CRUD({
       title: '${apiAlias}',
       url: 'api/${changeClassName}',
+      idField: '${pkChangeColName}',
       sort: '${pkChangeColName},desc',
-      crudMethod: { ...crud${className} }
+      crudMethod: { ...crud${className}}
     })
   },
   data() {
