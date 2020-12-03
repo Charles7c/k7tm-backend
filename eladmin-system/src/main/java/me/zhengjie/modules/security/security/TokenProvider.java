@@ -35,10 +35,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Key;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -79,17 +76,9 @@ public class TokenProvider implements InitializingBean {
      * @return /
      */
     public String createToken(Authentication authentication) {
-        /*
-         * 获取权限列表
-         */
-        String authorities = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
-
         return jwtBuilder
                 // 加入ID确保生成的 Token 都不一致
                 .setId(IdUtil.simpleUUID())
-                .claim(AUTHORITIES_KEY, authorities)
                 .setSubject(authentication.getName())
                 .compact();
     }
@@ -103,15 +92,8 @@ public class TokenProvider implements InitializingBean {
     Authentication getAuthentication(String token) {
         Claims claims = getClaims(token);
 
-        // fix bug: 当前用户如果没有任何权限时，在输入用户名后，刷新验证码会抛IllegalArgumentException
-        Object authoritiesStr = claims.get(AUTHORITIES_KEY);
-        Collection<? extends GrantedAuthority> authorities =
-                ObjectUtil.isNotEmpty(authoritiesStr) ?
-                        Arrays.stream(authoritiesStr.toString().split(","))
-                                .map(SimpleGrantedAuthority::new)
-                                .collect(Collectors.toList()) : Collections.emptyList();
-        User principal = new User(claims.getSubject(), "******", authorities);
-        return new UsernamePasswordAuthenticationToken(principal, token, authorities);
+        User principal = new User(claims.getSubject(), "******", new ArrayList<>());
+        return new UsernamePasswordAuthenticationToken(principal, token, new ArrayList<>());
     }
 
     public Claims getClaims(String token) {

@@ -154,6 +154,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Integer findByRoles(Set<Role> roles) {
+        if (roles.size() == 0) {
+            return Integer.MAX_VALUE;
+        }
         Set<RoleDto> roleDtos = new HashSet<>();
         for (Role role : roles) {
             roleDtos.add(findById(role.getId()));
@@ -217,7 +220,7 @@ public class RoleServiceImpl implements RoleService {
             redisUtils.delByKeys(CacheKey.DATE_USER, userIds);
             redisUtils.delByKeys(CacheKey.MENU_USER, userIds);
             redisUtils.delByKeys(CacheKey.ROLE_AUTH, userIds);
-            redisUtils.del(CacheKey.ROLE_ID + id);
         }
+        redisUtils.del(CacheKey.ROLE_ID + id);
     }
 }
